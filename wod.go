@@ -21,6 +21,10 @@ import (
 	"time"
 )
 
+// There may be a rule that lets you change the reroll limit. If so, we'll add
+// an option later.
+const rerollLimit = 9
+
 func badArgument() {
 	fmt.Println("Need an integer argument")
 	os.Exit(1)
@@ -40,7 +44,7 @@ func main() {
 		for {
 			r := rng.Intn(10)
 			roll = append(roll, r)
-			if r != 9 {
+			if r < rerollLimit {
 				break
 			}
 		}
